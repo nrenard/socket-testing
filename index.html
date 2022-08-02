@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Websocket dAle</title>
+</head>
+<body>
+  <output id="messages"></output>
+  <script>
+    const messages = document.getElementById('messages');
+    
+    const socket = new WebSocket('ws://localhost:1337');
+    
+    socket.onopen = (event) => console.log('Connected from WebSocket server: ', event);
+
+    socket.onmessage = (message) => (event) => console.log('Event from WebSocket server: ', event);
+
+    socket.onerror = (error) => 
+      console.error('Error from WebSocket server: ', error);
+
+    socket.onclose = () => console.log('Disconnected from WebSocket server');
+  </script>
+</body>
+</html>
